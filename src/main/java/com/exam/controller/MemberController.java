@@ -120,7 +120,7 @@ public class MemberController {
 	    if (result > 0) {
 	        // 탈퇴 성공 시, 로그아웃 처리
 	        SecurityContextHolder.clearContext();
-	        return "redirect:main"; // 탈퇴 후 홈 페이지로 이동
+	        return "redirect:/logout"; // 탈퇴 후 SecurityFilterChainConfig의 logout으로 가서 쿠키 제거 후 main으로 이동.
 	    } else {
 	        return "mypage"; // 실패 시 마이페이지로 이동
 	    }
