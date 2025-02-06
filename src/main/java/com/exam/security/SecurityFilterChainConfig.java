@@ -3,7 +3,6 @@ package com.exam.security;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,8 +18,8 @@ public class SecurityFilterChainConfig {
 		
 		//요청맵핑값 허용
 		http.authorizeHttpRequests(auth->
-		                           auth.requestMatchers("/main","/signup","/idCheck","/login","/goodsRetrieve","/WEB-INF/**").permitAll()  
-//		                               .requestMatchers("/**").permitAll()
+		                           auth.requestMatchers("/main","/signup","/idCheck","/login","/goodsRetrieve","/WEB-INF/**","/withdrawal").permitAll()  
+		                             //.requestMatchers("/**").permitAll()
 		                               .anyRequest()
 		                               .authenticated()
 				                  );
@@ -43,7 +42,7 @@ public class SecurityFilterChainConfig {
 				        .logoutUrl("/logout")  // SpringSecurity가 자동으로 로그아웃 처리해줄 요청매핑값
 				        .logoutSuccessUrl("/main") // logout 성공시 redirect 된 요청매핑값
                    );
-		
+
 		return http.build();
 	}
 	
