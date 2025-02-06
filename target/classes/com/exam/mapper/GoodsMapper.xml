@@ -14,7 +14,9 @@
 	 	        gName,
 	 	        gContent,
 	 	        gPrice,
-	 	        gImage
+	 	        gImage,
+	 	        purchaseCount,
+	 	        regDate
 	 	  from goods
 	 	  where gCategory = #{gCategory}
 	 
@@ -27,7 +29,8 @@
 	 	        gName,
 	 	        gContent,
 	 	        gPrice,
-	 	        gImage
+	 	        gImage,
+	 	        purchaseCount
 	 	  from goods
 	 	  where gCode = #{gCode}
 	 
