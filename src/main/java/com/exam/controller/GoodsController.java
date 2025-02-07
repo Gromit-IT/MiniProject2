@@ -2,6 +2,8 @@ package com.exam.controller;
 
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,11 @@ import com.exam.service.MemberService;
 public class GoodsController {
 
 	GoodsService goodsService;
+	MemberService memberService;
 	
-	public GoodsController(GoodsService goodsService) {
+	public GoodsController(GoodsService goodsService,MemberService memberService) {
 		this.goodsService = goodsService;
+		this.memberService = memberService;
 	}
 
 
@@ -41,6 +45,7 @@ public class GoodsController {
 		m.addAttribute("gCode", gCode);
 		
 		
+		
 		GoodsDTO dto = goodsService.goodsRetrieve(gCode);
 
 		ModelAndView mav = new ModelAndView();
@@ -49,6 +54,20 @@ public class GoodsController {
 		
 		//뷰 저정
 		mav.setViewName("goodsRetrieve");
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String)) {
+	        // auth !=null Null Pointer Exception 방지
+			// auth.isAuthenticated()을 통해 로그인 했는지 확인. 익명사용자도 true 칠수 있음 조심.
+			// 익명 사용자 true 방지를 위해 !(auth.getPrincipal() instanceof String)을 사용.(익명사용자는 String으로 저장)
+			//로그인한 사용자 정보 가져오기
+	        MemberDTO dto1 = (MemberDTO) auth.getPrincipal();
+	        String userid = dto1.getUserid();
+
+	        // 사용자 정보 조회 및 모델에 저장
+	        MemberDTO mypageDTO = memberService.mypage(userid);
+	        m.addAttribute("login", mypageDTO);
+	    }
 		
 		return mav;
 	}
