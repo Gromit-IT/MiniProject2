@@ -1,6 +1,7 @@
 package com.exam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,12 @@ public class GoodsServiceImpl implements GoodsService{
 
 	GoodsMapper mapper;
 	
+	@Override
+	public List<GoodsDTO> goodsSelectList(Map<String, Object> params) {
+		return mapper.goodsSelectList(params);
+	}
+
+
 	public GoodsServiceImpl(GoodsMapper mapper) {
 		this.mapper = mapper;
 	}

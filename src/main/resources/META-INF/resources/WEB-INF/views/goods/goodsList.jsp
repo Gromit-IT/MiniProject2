@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c"  uri="jakarta.tags.core" %>
+<form action="/shop/main" method="get">
+    <c:if test="${not empty gCategory}">
+        <input type="hidden" name="gCategory" value="${gCategory}">
+    </c:if>
+    <select name="sort" onchange="this.form.submit()">
+        <option value="default" ${selectedSort eq 'default' ? 'selected' : ''}>기본</option>
+        <option value="popular" ${selectedSort eq 'popular' ? 'selected' : ''}>인기순</option>
+        <option value="latest" ${selectedSort eq 'latest' ? 'selected' : ''}>최신순</option>
+    </select>
+</form>
 
 <div class="container">
   <div class="row">

@@ -44,7 +44,10 @@ public class GoodsDTO {
 
 	public GoodsDTO() {}
 
-	public GoodsDTO(String gCode, String gCategory, String gName, String gContent, int gPrice, String gImage) {
+	
+
+	public GoodsDTO(String gCode, String gCategory, String gName, String gContent, int gPrice, String gImage,
+			int purchaseCount, String regDate) {
 		super();
 		this.gCode = gCode;
 		this.gCategory = gCategory;
@@ -52,6 +55,8 @@ public class GoodsDTO {
 		this.gContent = gContent;
 		this.gPrice = gPrice;
 		this.gImage = gImage;
+		this.purchaseCount = purchaseCount;
+		this.regDate = regDate;
 	}
 
 	public String getgCode() {
