@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
->>.${cDTO}
-<br>
->>.${mDTO}
-<br>
 <form name="myForm" action="/shop/orderComplete" method="post">
 	<div class="container">
 		<div class="row mb-3">
@@ -34,14 +30,24 @@
 						<td>${cDTO.gAmount * cDTO.goodsList[0].gPrice }</td>
 						<td>${cDTO.gCartDate}</td>
 					</tr>
+
+					<!-- CartDTO 관련 데이터 -->
+					<input type="hidden" name="num" value="${cDTO.num}">
+					<input type="hidden" name="gCode" value="${cDTO.gCode}">
+					<input type="hidden" name="gSize" value="${cDTO.gSize}">
+					<input type="hidden" name="gColor" value="${cDTO.gColor}">
+					<input type="hidden" name="gAmount" value="${cDTO.gAmount}">
 				</tbody>
 			</table>
 		</div>
+
+		<!-- 고객 정보 -->
 		<div class="mb-10"></div>
 		<div class="row mb-3">
 			<label class="col-sm-2 col-form-label fs-4">고객 정보</label>
 		</div>
 		<hr>
+		<!-- MemberDTO 관련 데이터 -->
 		<div class="row mb-3">
 			<label for="username" class="col-sm-2 col-form-label">이름</label>
 			<div class="col-auto">
