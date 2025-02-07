@@ -34,5 +34,10 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.orderComplete(dto);
 	}
 
+	@Override
+	public OrderDTO getOrderById(int num) {
+		return mapper.getOrderById(num);
+	}
+
 	
 }

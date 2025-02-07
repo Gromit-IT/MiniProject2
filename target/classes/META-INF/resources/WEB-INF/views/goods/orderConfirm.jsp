@@ -4,7 +4,7 @@
 <br>
 >>.${mDTO}
 <br>
-<form name="myForm" action="/orderComplete" method="post">
+<form name="myForm" action="/shop/orderComplete" method="post">
 	<div class="container">
 		<div class="row mb-3">
 			<label class="col-sm-2 col-form-label fs-4">주문 상품 확인</label>
@@ -85,54 +85,6 @@
 	<div class="mt-20"></div>
 	<!--  배송지 정보 -->
 	<div class="container">
-		<div class="row mb-3">
-			<div class="col-auto">
-				<input type="checkbox" name="same_address" id="same_address">
-				배송지가 동일할 경우 선택하세요.
-			</div>
-		</div>
-		<div class="row mb-3">
-			<label class="col-sm-2 col-form-label fs-4">배송지 정보</label>
-		</div>
-		<div class="row mb-3">
-			<label for="username" class="col-sm-2 col-form-label">이름</label>
-			<div class="col-auto">
-				<input type="text" class="form-control" name="username"
-					id="orderName">
-			</div>
-		</div>
-		<hr>
-		<div class="row mb-3">
-			<div class="col-auto">
-				<label for="sample4_postcode" class="visually-hidden">post</label> <input
-					type="text" name="post" class="form-control" id="sample4_postcode"
-					placeholder="우편번호">
-			</div>
-			<div class="col-auto">
-				<button type="button" class="btn btn-primary mb-3"
-					onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
-			</div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-sm-5">
-				<label for="sample4_roadAddress" class="visually-hidden">도로명주소</label>
-				<input type="text" name="addr1" class="form-control"
-					id="sample4_roadAddress" placeholder="도로명주소">
-			</div>
-			<div class="col-sm-5">
-				<label for="sample4_jibunAddress" class="visually-hidden">지번주소</label>
-				<input type="text" name="addr2" class="form-control"
-					id="sample4_jibunAddress" placeholder="지번주소"> <span
-					id="guide" style="color: #999"></span>
-			</div>
-		</div>
-		<hr>
-		<div class="row mb-3">
-			<label for="phone1" class="col-sm-2 col-form-label">전화번호</label>
-			<div class="col-auto">
-				<input type="text" name="phone" class="form-control" id="phone">
-			</div>
-		</div>
 		<div class="col-12">
 			<button type="submit" class="btn btn-primary">완료</button>
 

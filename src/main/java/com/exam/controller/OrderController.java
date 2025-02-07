@@ -1,5 +1,7 @@
 package com.exam.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ import com.exam.service.OrderService;
 @Controller
 //@SessionAttributes("login")
 public class OrderController {
-
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	OrderService orderService;
 
 	public OrderController(OrderService orderService) {
@@ -43,10 +45,12 @@ public class OrderController {
 		return "orderConfirm";
 	}
 	
+	
 	@PostMapping("/orderComplete")
 	public String orderComplete(@ModelAttribute CartDTO cartDTO, @ModelAttribute MemberDTO memberDTO) {
 		OrderDTO order = new OrderDTO();
 
+		//cartDTO와 memberDTO에서 기본 정보 불러오기
 		order.setNum(cartDTO.getNum());
 		order.setUserid(memberDTO.getUserid());
 		order.setgCode(cartDTO.getgCode());
@@ -59,7 +63,12 @@ public class OrderController {
 		order.setAddr2(memberDTO.getAddr2());
 		order.setPhone(memberDTO.getPhone1() + memberDTO.getPhone2() + memberDTO.getPhone3());
 		order.setOrderDay(java.time.LocalDate.now());
+		
 		orderService.orderComplete(order);
+		
+		logger.info("LOGGER:{}", cartDTO);
+		logger.info("LOGGER:{}", memberDTO);
+		logger.info("LOGGER:{}", order);
 		return "redirect:/main";
 
 	}

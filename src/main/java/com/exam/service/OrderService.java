@@ -15,4 +15,5 @@ public interface OrderService {
 	public MemberDTO orderConfirmMember(String userid);
 	
 	public int orderComplete(OrderDTO dto);
+	public OrderDTO getOrderById(int num);
 }

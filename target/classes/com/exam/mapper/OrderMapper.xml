@@ -52,7 +52,7 @@
 	  </select>
 	 
     <!-- 주문 데이터를 orders 테이블에 삽입 -->
-    <insert id="orderComplete">
+    <insert id="orderComplete" parameterType="OrderDTO">
         INSERT INTO orderInfo (
             num, userid, gCode, gSize, gColor, gAmount, orderName, post, addr1, addr2, phone, orderDay
         ) VALUES (
@@ -60,6 +60,16 @@
             #{orderName}, #{post}, #{addr1}, #{addr2}, #{phone}, #{orderDay}
         )
     </insert>
+    
+        <!-- (선택) 주문 번호로 주문 정보 조회 -->
+    <select id="getOrderById" parameterType="int" resultType="OrderDTO">
+        SELECT 
+            num, userid, g_code AS gCode, g_size AS gSize, g_color AS gColor, 
+            g_amount AS gAmount, order_name AS orderName, post, addr1, addr2, 
+            phone, order_day AS orderDay
+        FROM orders
+        WHERE num = #{num}
+    </select>
 	 
 	 
 	 
