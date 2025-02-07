@@ -47,7 +47,7 @@ public class OrderController {
 	
 	
 	@PostMapping("/orderComplete")
-	public String orderComplete(@ModelAttribute CartDTO cartDTO, @ModelAttribute MemberDTO memberDTO) {
+	public String orderComplete(@ModelAttribute CartDTO cartDTO, @ModelAttribute MemberDTO memberDTO, @RequestParam("phone") String phone) {
 		OrderDTO order = new OrderDTO();
 
 		//cartDTO와 memberDTO에서 기본 정보 불러오기
@@ -61,7 +61,7 @@ public class OrderController {
 		order.setPost(memberDTO.getPost());
 		order.setAddr1(memberDTO.getAddr1());
 		order.setAddr2(memberDTO.getAddr2());
-		order.setPhone(memberDTO.getPhone1() + memberDTO.getPhone2() + memberDTO.getPhone3());
+		order.setPhone(phone);
 		order.setOrderDay(java.time.LocalDate.now());
 		
 		orderService.orderComplete(order);
@@ -69,6 +69,7 @@ public class OrderController {
 		logger.info("LOGGER:{}", cartDTO);
 		logger.info("LOGGER:{}", memberDTO);
 		logger.info("LOGGER:{}", order);
+		logger.info("LOGGER:phone값{}", phone);
 		return "redirect:/main";
 
 	}
