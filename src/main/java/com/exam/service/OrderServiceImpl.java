@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.exam.dto.CartDTO;
 import com.exam.dto.MemberDTO;
+import com.exam.dto.OrderDTO;
 import com.exam.mapper.OrderMapper;
 
 
@@ -26,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public MemberDTO orderConfirmMember(String userid) {
 		return mapper.orderConfirmMember(userid);
+	}
+
+	@Override
+	public int orderComplete(OrderDTO dto) {
+		return mapper.orderComplete(dto);
 	}
 
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.exam.dto.CartDTO;
 import com.exam.dto.MemberDTO;
+import com.exam.dto.OrderDTO;
 
 
 
@@ -13,4 +14,5 @@ public interface OrderService {
 	
 	public MemberDTO orderConfirmMember(String userid);
 	
+	public int orderComplete(OrderDTO dto);
 }
