@@ -1,5 +1,5 @@
 # MiniProject2
-" 신세계I&C AI플랫폼을 활용한 (리테일) 서비스 부트캠프 MiniProject2"
+" 신세계I&C AI플랫폼을 활용한 (리테일) 서비스 MiniProject2"
 
 <br>
 
