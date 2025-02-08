@@ -47,7 +47,9 @@
 			<label class="col-sm-2 col-form-label fs-4">고객 정보</label>
 		</div>
 		<hr>
+		
 		<!-- MemberDTO 관련 데이터 -->
+					<input type="hidden" name="userid" value="${mDTO.userid}">
 		<div class="row mb-3">
 			<label for="username" class="col-sm-2 col-form-label">이름</label>
 			<div class="col-auto">
