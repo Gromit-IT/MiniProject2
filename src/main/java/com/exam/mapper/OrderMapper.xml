@@ -61,6 +61,12 @@
         )
     </insert>
     
+    <!-- 주문 확정 후 장바구니에서 제거  -->
+    <delete id="orderCompleteDelete" parameterType="int">
+	    delete from cart
+		where num = #{num}
+    </delete>
+    
         <!-- (선택) 주문 번호로 주문 정보 조회 -->
     <select id="getOrderById" parameterType="int" resultType="OrderDTO">
         SELECT 

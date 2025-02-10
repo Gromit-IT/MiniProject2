@@ -47,7 +47,7 @@ public class OrderController {
 	
 	
 	@PostMapping("/orderComplete")
-	public String orderComplete(@ModelAttribute CartDTO cartDTO, @ModelAttribute MemberDTO memberDTO, @RequestParam("phone") String phone) {
+	public String orderComplete(@ModelAttribute CartDTO cartDTO, @ModelAttribute MemberDTO memberDTO, @RequestParam("phone") String phone, @RequestParam("num") int num) {
 		OrderDTO order = new OrderDTO();
 
 		//cartDTO와 memberDTO에서 기본 정보 불러오기
@@ -65,12 +65,10 @@ public class OrderController {
 		order.setOrderDay(java.time.LocalDate.now());
 		
 		orderService.orderComplete(order);
+
+		int n = orderService.orderCompleteDelete(num);
 		
-		logger.info("LOGGER:{}", cartDTO);
-		logger.info("LOGGER:{}", memberDTO);
-		logger.info("LOGGER:{}", order);
-		logger.info("LOGGER:phone값{}", phone);
-		return "redirect:/main";
+		return "goods/orderSuccess";
 
 	}
 

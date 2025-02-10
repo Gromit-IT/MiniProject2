@@ -3,6 +3,7 @@ package com.exam.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.exam.dto.CartDTO;
 import com.exam.dto.MemberDTO;
@@ -30,14 +31,21 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public int orderComplete(OrderDTO dto) {
 		return mapper.orderComplete(dto);
 	}
 
 	@Override
+	public int orderCompleteDelete(int num) {
+		return mapper.orderCompleteDelete(num);
+	}
+	
+	@Override
 	public OrderDTO getOrderById(int num) {
 		return mapper.getOrderById(num);
 	}
+
 
 	
 }

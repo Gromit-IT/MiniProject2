@@ -14,6 +14,8 @@ public interface OrderMapper {
 	public MemberDTO orderConfirmMember(String userid);
 	
 	public int orderComplete(OrderDTO dto);
+	public int orderCompleteDelete(int num);
+	
 	public OrderDTO getOrderById(int num);
 	
 }
