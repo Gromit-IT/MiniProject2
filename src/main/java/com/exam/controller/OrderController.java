@@ -42,8 +42,10 @@ public class OrderController {
 		MemberDTO dto = (MemberDTO) auth.getPrincipal();
 		String userid = dto.getUserid();
 
-		MemberDTO memberDTO = orderService.orderConfirmMember(userid);
+		MemberDTO mypageDTO = memberService.mypage(userid);
+		m.addAttribute("login", mypageDTO);
 
+		MemberDTO memberDTO = orderService.orderConfirmMember(userid);
 		m.addAttribute("cDTO", cartDTO);
 		m.addAttribute("mDTO", memberDTO);
 
