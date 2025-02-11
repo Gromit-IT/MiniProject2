@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.exam.dto.GoodsDTO;
+import com.exam.dto.MemberDTO;
 import com.exam.dto.ReviewDTO;
 import com.exam.service.GoodsService;
+import com.exam.service.MemberService;
 import com.exam.service.ReviewService;
 
 
