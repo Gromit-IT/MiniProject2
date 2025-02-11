@@ -101,19 +101,22 @@
 		</div>
 		<div class="col-12">
 			<button type="submit" class="btn btn-primary">update</button>
-			<button type="reset" class="btn btn-primary">cancel</button>
-		</div>
-	</form>
-	<form id="withdrawalForm" method="post" action="withdrawal">
-		<div class="col-12">
-			<!-- 회원 탈퇴 버튼 -->
-			<button type="submit" class="btn btn-dark" id="withdrawal">회원탈퇴</button>
+			<!-- 취소 버튼=> main으로 이동 -->
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='main';">Cancel</button>
 		</div>
 	</form>
 
 	<form id="getOrderById" method="get" action="orderInfo">
 		<div class="col-12">
+			<!-- 주문 내역 버튼 -->
 			<button type="submit" class="btn btn-info">주문 내역</button>
+		</div>
+	</form>
+	<br>
+	<form id="withdrawalForm" method="post" action="withdrawal">
+		<div class="col-12">
+			<!-- 회원 탈퇴 버튼 -->
+			<button type="submit" class="btn btn-dark" id="withdrawal">회원 탈퇴</button>
 		</div>
 	</form>
 
