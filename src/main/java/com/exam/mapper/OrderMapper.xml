@@ -25,12 +25,15 @@
          </collection>
 	 </resultMap>
 	 
+
+	 <!-- 주문확인창에 상품 정보 가져오기 -->
 	 <select id="orderConfirm" resultMap="userResultMap" parameterType="int">
 	    select *
 		from cart join goods on cart.gCode = goods.gCode
 		where num = #{num}
 	 </select>
 	 
+	 <!-- 주문확인창에서 회원정보 가져오기 -->
 	 <select id="orderConfirmMember" 
 	      parameterType="string" resultType="MemberDTO">
 	      
@@ -49,6 +52,29 @@
 	   where userid = #{userid}
 	  </select>
 	 
+    <!-- 주문 데이터를 orders 테이블에 삽입 -->
+    <insert id="orderComplete" parameterType="OrderDTO">
+        INSERT INTO orderInfo (
+            num, userid, gCode, gSize, gColor, gAmount, orderName, post, addr1, addr2, phone, orderDay
+        ) VALUES (
+            #{num}, #{userid}, #{gCode}, #{gSize}, #{gColor}, #{gAmount}, 
+            #{orderName}, #{post}, #{addr1}, #{addr2}, #{phone}, #{orderDay}
+        )
+    </insert>
+    
+    <!-- 주문 확정 후 장바구니에서 제거  -->
+    <delete id="orderCompleteDelete" parameterType="int">
+	    delete from cart
+		where num = #{num}
+    </delete>
+    
+        <!-- userid로 주문내역 조회 -->
+    <select id="getOrderById" parameterType="string" resultType="OrderDTO">
+        SELECT 
+            o.num, o.userid, o.gCode, o.gSize, o.gColor, o.gAmount,o.orderDay, g.gImage, g.gPrice
+        FROM orderinfo o join goods g on o.gCode = g.gCode
+        WHERE userid = #{userid}
+    </select>
 	 
 	 
 	 

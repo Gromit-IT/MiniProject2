@@ -83,12 +83,19 @@
 	   where userid = #{userid}
 	 </select>
 	 
-	  
 	 <select id="findByUserid" resultType="MemberDTO" parameterType="string">
-	     select userid, passwd, username
-	     from member
-	     where userid=#{userid}
+	   select userid, passwd,username
+	   from member
+	   where userid=#{userid}
 	 </select>
+	 
+	 
+	 <!-- 회원탈퇴 -->
+	 
+	 <delete id="withdrawal" parameterType="string">
+	 delete from member where userid = #{userid}
+	 </delete>
+	 
 	 
 	 
 	 

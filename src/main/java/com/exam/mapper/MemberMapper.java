@@ -10,8 +10,14 @@ import com.exam.dto.MemberDTO;
 public interface MemberMapper {
 
 	public MemberDTO idCheck(String userid);
+	
+	//DML => int
 	public int memberAdd(MemberDTO dto);
-	public MemberDTO login(Map<String, String> map);
+	
+	public MemberDTO login(Map<String, String>map);
+	
 	public MemberDTO mypage(String userid);
 	public MemberDTO findByUserid(String userid);
+	public int withdrawal(String userid);
+	
 }

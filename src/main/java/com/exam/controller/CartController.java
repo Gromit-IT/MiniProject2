@@ -33,9 +33,11 @@ public class CartController {
 
 	
 	CartService cartService;
+	MemberService memberService;
 	
-	public CartController(CartService cartService) {
+	public CartController(CartService cartService, MemberService memberService) {
 		this.cartService = cartService;
+		this.memberService = memberService;
 	}
 
 
@@ -84,9 +86,11 @@ public class CartController {
 //		MemberDTO memberDTO = (MemberDTO)m.getAttribute("login");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         MemberDTO memberDTO = (MemberDTO)auth.getPrincipal();
-        
-        
 		String userid = memberDTO.getUserid();
+		
+        // 사용자 정보 조회 및 모델에 저장
+        MemberDTO mypageDTO = memberService.mypage(userid);
+        m.addAttribute("login", mypageDTO);
 		
 		// 데이터
 		List<CartDTO> cartList = cartService.cartList(userid);
