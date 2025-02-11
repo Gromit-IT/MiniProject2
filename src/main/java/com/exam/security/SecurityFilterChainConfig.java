@@ -19,7 +19,7 @@ public class SecurityFilterChainConfig {
 		
 		//요청맵핑값 허용
 		http.authorizeHttpRequests(auth->
-		                           auth.requestMatchers("/main","/signup","/idCheck","/login","/goodsRetrieve","/WEB-INF/**").permitAll()  
+		                           auth.requestMatchers("/main","/signup","/idCheck","/login","/goodsRetrieve","/WEB-INF/**", "/review/add", "/reviews/**","/shop/goodsRetrieve").permitAll()  
 //		                               .requestMatchers("/**").permitAll()
 		                               .anyRequest()
 		                               .authenticated()

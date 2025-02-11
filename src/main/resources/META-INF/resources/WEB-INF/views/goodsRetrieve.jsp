@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +10,43 @@
 	  text-align: center;
 	  font-size: 16px;
 	}
-	
     label, input, button {
-    margin: 10px;
-    padding: 5px;
+        margin: 10px;
+        padding: 5px;
     }
-
 	footer {
 	    bottom: 0;
 	    position: absolute;
 	    width: 90%;
 	    height: 40px;
 	}
- </style>
-   <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" >
-   <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</style>
+<link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+<script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
- <div class="App">
+<div class="App">
 	<jsp:include page="common/top.jsp" flush="true" /><br>
 	<jsp:include page="common/menu.jsp" flush="true" />
 	<hr>
-	<jsp:include page="goods/goodsRetrieve.jsp" flush="true" />
- </div>
+
+	<!-- 상품 정보를 불러올 때 `goodsRetrieve`가 없으면 에러 발생 가능 -->
+	<c:choose>
+	    <c:when test="${not empty goodsRetrieve}">
+	        <jsp:include page="goods/goodsRetrieve.jsp">
+	            <jsp:param name="gCode" value="${goodsRetrieve.gCode}" />
+	        </jsp:include>
+	    </c:when>
+	    
+	</c:choose>
+
+	
+
+	<!-- 리뷰 입력 폼 -->
+	<jsp:include page="review/reviewForm.jsp">
+		    <jsp:param name="gCode" value="${goodsRetrieve.gCode}" />
+	</jsp:include>
+	
+</div>
 </body>
 </html>
