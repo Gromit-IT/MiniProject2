@@ -96,7 +96,7 @@
 		<div class="col-12">
 			<button type="submit" class="btn btn-primary">결제</button>
 
-			<button type="reset" class="btn btn-primary">취소</button>
+			<button type="reset" class="btn btn-secondary">취소</button>
 		</div>
 	</div>
 </form>
