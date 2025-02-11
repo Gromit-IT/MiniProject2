@@ -96,7 +96,8 @@
 		<div class="col-12">
 			<button type="submit" class="btn btn-primary">결제</button>
 
-			<button type="reset" class="btn btn-secondary">취소</button>
+			<!-- 취소 버튼=> main으로 이동 -->
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='cartList';">Cancel</button>
 		</div>
 	</div>
 </form>
