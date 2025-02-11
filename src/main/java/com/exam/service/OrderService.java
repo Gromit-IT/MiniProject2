@@ -16,5 +16,5 @@ public interface OrderService {
 	
 	public int orderComplete(OrderDTO dto);
 	public int orderCompleteDelete(int num);
-	public OrderDTO getOrderById(int num);
+	public List<OrderDTO> getOrderById(String userid);
 }

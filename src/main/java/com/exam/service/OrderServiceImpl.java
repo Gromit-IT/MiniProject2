@@ -40,11 +40,13 @@ public class OrderServiceImpl implements OrderService {
 	public int orderCompleteDelete(int num) {
 		return mapper.orderCompleteDelete(num);
 	}
-	
+
 	@Override
-	public OrderDTO getOrderById(int num) {
-		return mapper.getOrderById(num);
+	public List<OrderDTO> getOrderById(String userid) {
+		return mapper.getOrderById(userid);
 	}
+	
+
 
 
 	

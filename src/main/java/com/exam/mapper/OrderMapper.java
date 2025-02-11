@@ -1,5 +1,7 @@
 package com.exam.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.exam.dto.CartDTO;
@@ -16,6 +18,6 @@ public interface OrderMapper {
 	public int orderComplete(OrderDTO dto);
 	public int orderCompleteDelete(int num);
 	
-	public OrderDTO getOrderById(int num);
+	public List<OrderDTO> getOrderById(String userid);
 	
 }

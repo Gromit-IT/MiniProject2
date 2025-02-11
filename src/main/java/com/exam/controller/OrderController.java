@@ -1,5 +1,7 @@
 package com.exam.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.exam.dto.CartDTO;
 import com.exam.dto.MemberDTO;
 import com.exam.dto.OrderDTO;
+import com.exam.service.MemberService;
 import com.exam.service.OrderService;
 
 @Controller
@@ -21,9 +24,11 @@ import com.exam.service.OrderService;
 public class OrderController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	OrderService orderService;
+	MemberService memberService;
 
-	public OrderController(OrderService orderService) {
+	public OrderController(OrderService orderService, MemberService memberService) {
 		this.orderService = orderService;
+		this.memberService = memberService;
 	}
 
 	@GetMapping("/orderConfirm")
@@ -71,6 +76,31 @@ public class OrderController {
 		return "goods/orderSuccess";
 
 	}
+	
+	@GetMapping("orderInfo")
+	public String getOrderById(Model m){
+		
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        MemberDTO memberDTO = (MemberDTO)auth.getPrincipal();
+        
+        
+		String userid = memberDTO.getUserid();
+		
+        // 사용자 정보 조회 및 모델에 저장
+        MemberDTO mypageDTO = memberService.mypage(userid);
+        m.addAttribute("login", mypageDTO);
+        
+		
+		// 데이터
+		List<OrderDTO> getOrderById = orderService.getOrderById(userid);
+		m.addAttribute("oDTO", getOrderById); // JSP로 전달
+
+		//logger.info("LOGGER:oDTO.num:{}", getOrderById);
+		return "goods/orderInfo";
+	}
+		
+	
 
 
 }

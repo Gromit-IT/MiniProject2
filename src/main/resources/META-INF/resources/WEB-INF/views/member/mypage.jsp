@@ -111,6 +111,12 @@
 		</div>
 	</form>
 
+	<form id="getOrderById" method="get" action="orderInfo">
+		<div class="col-12">
+			<button type="submit" class="btn btn-info">주문 내역</button>
+		</div>
+	</form>
+
 </div>
 
 
