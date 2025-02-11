@@ -11,5 +11,6 @@ public interface GoodsService {
 
 	public List<GoodsDTO> goodsList(String gCategory);
 	public GoodsDTO goodsRetrieve(String gCode);
-	List<GoodsDTO> goodsSelectList(Map<String, Object> params);
+	public List<GoodsDTO> goodsPurchaseList(String gCategory);
+	public List<GoodsDTO> goodsRegDateList(String gCategory);
 }

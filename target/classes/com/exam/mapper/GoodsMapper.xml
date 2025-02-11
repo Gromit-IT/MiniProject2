@@ -37,12 +37,24 @@
 
 	</select>
 
-	<select id="goodsSelectList" resultType="GoodsDTO"
-		parameterType="map">
+	<select id="goodsPurchaseList" resultType="GoodsDTO"
+		parameterType="string">
+
 		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
 		regDate
 		FROM goods
+		WHERE gCategory = #{gCategory}
 		ORDER BY purchaseCount DESC;
+	</select>
+	
+	<select id="goodsRegDateList" resultType="GoodsDTO"
+		parameterType="string">
+
+		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
+		regDate
+		FROM goods
+		WHERE gCategory = #{gCategory}
+		ORDER BY regDate DESC;
 	</select>
 
 

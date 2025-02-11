@@ -3,9 +3,7 @@
     
 <%@ taglib prefix="c"  uri="jakarta.tags.core" %>
 <form action="/shop/main" method="get">
-    <c:if test="${not empty gCategory}">
-        <input type="hidden" name="gCategory" value="${gCategory}">
-    </c:if>
+       <input type="hidden" name="gCategory" value="${not empty gCategory ? gCategory : ''}">
     <select name="sort" onchange="this.form.submit()">
         <option value="default" ${selectedSort eq 'default' ? 'selected' : ''}>기본</option>
         <option value="popular" ${selectedSort eq 'popular' ? 'selected' : ''}>인기순</option>

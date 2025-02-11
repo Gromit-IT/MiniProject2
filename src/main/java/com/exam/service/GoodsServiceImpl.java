@@ -13,11 +13,7 @@ public class GoodsServiceImpl implements GoodsService{
 
 	GoodsMapper mapper;
 	
-	@Override
-	public List<GoodsDTO> goodsSelectList(Map<String, Object> params) {
-		return mapper.goodsSelectList(params);
-	}
-
+	
 
 	public GoodsServiceImpl(GoodsMapper mapper) {
 		this.mapper = mapper;
@@ -34,5 +30,19 @@ public class GoodsServiceImpl implements GoodsService{
 	public GoodsDTO goodsRetrieve(String gCode) {
 		return mapper.goodsRetrieve(gCode);
 	}
+
+
+	@Override
+	public List<GoodsDTO> goodsPurchaseList(String gCategory) {
+		return mapper.goodsPurchaseList(gCategory);
+	}
+
+
+	@Override
+	public List<GoodsDTO> goodsRegDateList(String gCategory) {
+		return mapper.goodsRegDateList(gCategory);
+	}
+	
+	
 
 }

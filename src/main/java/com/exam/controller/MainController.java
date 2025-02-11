@@ -24,10 +24,23 @@ public class MainController {
 	@GetMapping("/main") //main.jsp
 	@ModelAttribute("goodsList")
 	public List<GoodsDTO> main(@RequestParam(required = false, defaultValue = "top")
-	                    String gCategory) {
+	                    String gCategory,
+	                    @RequestParam(required = false, defaultValue = "default") String sort) {
 		
 		// JSP에서 보여줄 데이터고 모델에 저장해야 된다.
-		List<GoodsDTO> list = service.goodsList(gCategory);
+		List<GoodsDTO> list;
+
+        // 정렬 조건 추가
+        if ("popular".equals(sort)) {
+            list = service.goodsPurchaseList(gCategory); // 인기순 정렬
+            System.out.println("인기순 정렬 실행");
+        } else if ("latest".equals(sort)) {
+            list = service.goodsRegDateList(gCategory); // 최신순 정렬
+            System.out.println("최신순 정렬 실행");
+        } else {
+            list = service.goodsList(gCategory); // 기본 정렬
+            System.out.println("기본 정렬 실행");
+        }
 		
 		return list;
 	}
