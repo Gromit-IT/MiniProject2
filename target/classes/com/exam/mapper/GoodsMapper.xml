@@ -3,35 +3,60 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.exam.mapper.GoodsMapper">
-   
+
+
+
+	<select id="goodsList" resultType="GoodsDTO"
+		parameterType="string">
+
+		select gCode,
+		gCategory,
+		gName,
+		gContent,
+		gPrice,
+		gImage,
+		purchaseCount,
+		regDate
+		from goods
+		where gCategory = #{gCategory}
+
+	</select>
+
+	<select id="goodsRetrieve" resultType="GoodsDTO"
+		parameterType="string">
+
+		select gCode,
+		gCategory,
+		gName,
+		gContent,
+		gPrice,
+		gImage,
+		purchaseCount
+		from goods
+		where gCode = #{gCode}
+
+	</select>
+
+	<select id="goodsPurchaseList" resultType="GoodsDTO"
+		parameterType="string">
+
+		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
+		regDate
+		FROM goods
+		WHERE gCategory = #{gCategory}
+		ORDER BY purchaseCount DESC;
+	</select>
 	
-	 
-	 <select id="goodsList" resultType="GoodsDTO" 
-	 parameterType="string">
-	 	 
-	 	  select gCode, 
-	 	        gCategory,
-	 	        gName,
-	 	        gContent,
-	 	        gPrice,
-	 	        gImage
-	 	  from goods
-	 	  where gCategory = #{gCategory}
-	 
-	 </select>
-	 
-	  <select id="goodsRetrieve" resultType="GoodsDTO" parameterType="string">
-	 	 
-	 	  select gCode, 
-	 	        gCategory,
-	 	        gName,
-	 	        gContent,
-	 	        gPrice,
-	 	        gImage
-	 	  from goods
-	 	  where gCode = #{gCode}
-	 
-	 </select>
-	 
-	 
+	<select id="goodsRegDateList" resultType="GoodsDTO"
+		parameterType="string">
+
+		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
+		regDate
+		FROM goods
+		WHERE gCategory = #{gCategory}
+		ORDER BY regDate DESC;
+	</select>
+
+
+
 </mapper>

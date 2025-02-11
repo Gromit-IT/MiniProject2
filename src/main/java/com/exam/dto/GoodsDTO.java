@@ -23,10 +23,31 @@ public class GoodsDTO {
 	String gContent;
 	int gPrice;
 	String gImage;
+	int purchaseCount;
+	String regDate;
 	
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
+	public int getPurchaseCount() {
+		return purchaseCount;
+	}
+
+	public void setPurchaseCount(int purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
+
 	public GoodsDTO() {}
 
-	public GoodsDTO(String gCode, String gCategory, String gName, String gContent, int gPrice, String gImage) {
+	
+
+	public GoodsDTO(String gCode, String gCategory, String gName, String gContent, int gPrice, String gImage,
+			int purchaseCount, String regDate) {
 		super();
 		this.gCode = gCode;
 		this.gCategory = gCategory;
@@ -34,6 +55,8 @@ public class GoodsDTO {
 		this.gContent = gContent;
 		this.gPrice = gPrice;
 		this.gImage = gImage;
+		this.purchaseCount = purchaseCount;
+		this.regDate = regDate;
 	}
 
 	public String getgCode() {
