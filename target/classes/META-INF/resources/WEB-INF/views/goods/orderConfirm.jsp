@@ -94,7 +94,7 @@
 	<!--  배송지 정보 -->
 	<div class="container">
 		<div class="col-12">
-			<button type="submit" class="btn btn-primary">완료</button>
+			<button type="submit" class="btn btn-primary">결제</button>
 
 			<button type="reset" class="btn btn-primary">취소</button>
 		</div>
