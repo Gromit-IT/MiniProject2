@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exam.dto.CartDTO;
+import com.exam.dto.GoodsDTO;
 import com.exam.dto.MemberDTO;
 import com.exam.dto.OrderDTO;
 import com.exam.mapper.OrderMapper;
@@ -45,6 +46,12 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderDTO> getOrderById(String userid) {
 		return mapper.getOrderById(userid);
 	}
+
+	@Override
+	public GoodsDTO mypageOrderConfirm(String gCode) {
+		return mapper.mypageOrderConfirm(gCode);
+	}
+
 	
 
 

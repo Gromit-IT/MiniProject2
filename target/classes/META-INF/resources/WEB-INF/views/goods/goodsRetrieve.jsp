@@ -1,7 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
@@ -25,9 +24,18 @@
 
 	    	f.submit();
 	  });
+	  
+	  // 구매 버튼
+	  $("#buyBtn").on("click", function(event){
+	    	event.preventDefault();
+	    	var f = $("form")[0];
+	    	f.action = "/shop/orderDirect"; // 주문 확인 페이지로 이동
+	    	f.method = "GET"; // GET 방식으로 데이터 전송
+	    	f.submit();
+	  });
   });
-</script>
 
+</script>
 
 <div class="container">
 	<div>${errorMessage}</div>
@@ -52,6 +60,8 @@
 							<option value="M">M</option>
 							<option value="S">S</option>
 
+				
+
 						</select> <select class="select_change" name="gColor" id="gColor">
 
 							<option selected value="색상선택">색상선택</option>
@@ -69,7 +79,7 @@
 						<img src="images/up.PNG" id="up"> <img src="images/down.PNG" id="down">
 
 					</h6>
-					<button class="btn btn-primary mt-3">구매</button>
+					<button class="btn btn-primary mt-3" id="buyBtn">구매</button>
 					<button class="btn btn-primary mt-3" id="cartBtn">장바구니</button>
 				</div>
 			</div>

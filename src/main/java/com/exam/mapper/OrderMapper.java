@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.exam.dto.CartDTO;
+import com.exam.dto.GoodsDTO;
 import com.exam.dto.MemberDTO;
 import com.exam.dto.OrderDTO;
 
@@ -12,6 +13,7 @@ import com.exam.dto.OrderDTO;
 public interface OrderMapper {
 
 	public CartDTO orderConfirm(int num);
+	public GoodsDTO mypageOrderConfirm(String gCode);
 	
 	public MemberDTO orderConfirmMember(String userid);
 	
