@@ -11,6 +11,10 @@
 	href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
+</div>
+	 <div class="App">
+	<jsp:include page="../common/top.jsp" flush="true" /><br>
+ </div>
 	<div class="container">
 		<h2>상품 등록</h2>
 		<form action="/shop/goodsAdd" method="post"
@@ -47,6 +51,6 @@
 			<button type="submit" class="btn btn-primary">등록</button>
 		</form>
 
-	</div>
+	
 </body>
 </html>
