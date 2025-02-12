@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.dto.CartDTO;
+import com.exam.dto.GoodsDTO;
 import com.exam.dto.MemberDTO;
 import com.exam.dto.OrderDTO;
+import com.exam.service.CartService;
+import com.exam.service.GoodsService;
 import com.exam.service.MemberService;
 import com.exam.service.OrderService;
 
@@ -25,12 +29,17 @@ public class OrderController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	OrderService orderService;
 	MemberService memberService;
+	GoodsService goodsService;
+	CartService cartService;
 
-	public OrderController(OrderService orderService, MemberService memberService) {
+	public OrderController(OrderService orderService, MemberService memberService, GoodsService goodsService, CartService cartService) {
 		this.orderService = orderService;
 		this.memberService = memberService;
+		this.goodsService = goodsService;
+		this.cartService = cartService;
 	}
 
+	// 장바구니 => 주문
 	@GetMapping("/orderConfirm")
 	public String cartAdd(@RequestParam Integer num, Model m) {
 
@@ -51,6 +60,56 @@ public class OrderController {
 
 		return "orderConfirm";
 	}
+	
+	// 상품상세보기 => 주문
+	@GetMapping("/orderDirect")
+	public String orderDirect(@RequestParam String gCode,
+	                          @RequestParam String gSize,
+	                          @RequestParam String gColor,
+	                          @RequestParam int gAmount,
+	                          Model m) {
+
+	    // 1. 로그인 관련 정보 가져오기
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    MemberDTO dto1 = (MemberDTO) auth.getPrincipal();
+	    String userid = dto1.getUserid();
+
+	    // 회원 정보 조회
+	    MemberDTO mypageDTO = memberService.mypage(userid);
+	    m.addAttribute("login", mypageDTO);
+
+	    // 2. 상품 정보를 데이터베이스에서 조회
+	    GoodsDTO goodsDTO = orderService.mypageOrderConfirm(gCode);
+	    if (goodsDTO == null) {
+	        throw new IllegalArgumentException("유효하지 않은 상품 코드입니다: " + gCode);
+	    }
+	    
+	    // 3. 새로운 num 값 생성 (가장 큰 num + 1)
+	    int maxNum = orderService.getMaxNum(); // 현재 cart 테이블의 최대 num 값
+	    int newNum = maxNum + 1;
+
+	    // 3. CartDTO 생성 및 데이터 설정
+	    CartDTO cartDTO = new CartDTO();
+	    cartDTO.setNum(newNum);
+	    cartDTO.setgCode(gCode);         // 상품 코드
+	    cartDTO.setgSize(gSize);         // 선택한 사이즈
+	    cartDTO.setgColor(gColor);       // 선택한 색상
+	    cartDTO.setgAmount(gAmount);     // 주문 수량
+	    cartDTO.setGoodsList(List.of(goodsDTO)); // GoodsDTO를 리스트로 추가
+
+	    // 현재 날짜 설정
+	    cartDTO.setgCartDate(LocalDate.now());
+
+	    // 4. 주문 확인창에서 회원정보 가져오기
+	    MemberDTO memberDTO = orderService.orderConfirmMember(userid);
+
+	    // 5. 모델에 데이터 추가
+	    m.addAttribute("cDTO", cartDTO); // CartDTO 전달
+	    m.addAttribute("mDTO", memberDTO); // 사용자 정보 전달
+
+	    return "orderConfirm"; // 주문 확인 페이지로 이동
+	}
+
 	
 	
 	@PostMapping("/orderComplete")

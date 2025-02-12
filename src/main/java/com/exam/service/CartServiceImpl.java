@@ -40,5 +40,9 @@ public class CartServiceImpl implements CartService {
 		return mapper.cartDeleteAll(list);
 	}
 
+	public int getMaxNumCart() {
+	    return mapper.getMaxNumCart();
+	}
+
 	
 }
