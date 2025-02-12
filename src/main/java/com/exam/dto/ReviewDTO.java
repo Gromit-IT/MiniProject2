@@ -5,7 +5,14 @@ import java.sql.Timestamp;
 public class ReviewDTO {
     private int id;
     private String gCode;
-    private String userid;
+    public String getgCode() {
+		return gCode;
+	}
+
+	public void setgCode(String gCode) {
+		this.gCode = gCode;
+	}
+	private String userid;
     private int rating;
     private String reviewText;
     private Timestamp createdAt;
