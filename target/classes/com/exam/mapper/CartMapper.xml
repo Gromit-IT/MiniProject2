@@ -6,9 +6,15 @@
    
 	 
 	 <insert id="cartAdd" parameterType="CartDTO">
-	   insert into cart (userid, gCode, gSize, gColor, gAmount)
-	   values ( #{userid}, #{gCode}, #{gSize}, #{gColor}, #{gAmount})
+	   insert into cart (num, userid, gCode, gSize, gColor, gAmount)
+	   values (#{num}, #{userid}, #{gCode}, #{gSize}, #{gColor}, #{gAmount})
 	 </insert>
+	 
+	 	<!-- orderinfo 테이블에서 가장 큰 num 값을 가져오기 -->
+	<select id="getMaxNumCart" resultType="int">
+		SELECT COALESCE(MAX(num), 0)
+		FROM orderinfo
+	</select>
 	 
 	 <resultMap id="userResultMap" type="CartDTO">
 		 <id     property="num" column="num" />

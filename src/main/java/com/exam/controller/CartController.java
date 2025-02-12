@@ -1,7 +1,6 @@
 package com.exam.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,20 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.exam.dto.CartDTO;
-import com.exam.dto.GoodsDTO;
 import com.exam.dto.MemberDTO;
 import com.exam.service.CartService;
-import com.exam.service.GoodsService;
 import com.exam.service.MemberService;
+import com.exam.service.OrderService;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Controller
@@ -34,10 +27,12 @@ public class CartController {
 	
 	CartService cartService;
 	MemberService memberService;
+	OrderService orderService;
 	
-	public CartController(CartService cartService, MemberService memberService) {
+	public CartController(CartService cartService, MemberService memberService,	OrderService orderService) {
 		this.cartService = cartService;
 		this.memberService = memberService;
+		this.orderService = orderService;
 	}
 
 
@@ -66,7 +61,15 @@ public class CartController {
 		
 		String userid = memberDTO.getUserid();
 		
+	    // 3. 새로운 num 값 생성 (가장 큰 num + 1)
+	    int maxNum = orderService.getMaxNum();
+	    int newNum = maxNum + 1;
+
+	    System.out.println(newNum);
+		
 		CartDTO cartDTO = new CartDTO();
+	    cartDTO.setNum(newNum);
+	    System.out.println(newNum);
 		cartDTO.setUserid(userid);
 		cartDTO.setgCode(gCode);
 		cartDTO.setgSize(gSize);

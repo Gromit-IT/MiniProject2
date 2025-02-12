@@ -52,6 +52,12 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.mypageOrderConfirm(gCode);
 	}
 
+	@Override
+	public int getMaxNum() {
+	    return mapper.getMaxNum();
+	}
+
+
 	
 
 

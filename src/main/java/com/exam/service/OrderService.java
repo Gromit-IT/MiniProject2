@@ -13,6 +13,9 @@ public interface OrderService {
 
 	public CartDTO orderConfirm(int num);
 	public GoodsDTO mypageOrderConfirm(String gCode);
+	public int getMaxNum();
+
+	
 	public MemberDTO orderConfirmMember(String userid);
 	
 	public int orderComplete(OrderDTO dto);

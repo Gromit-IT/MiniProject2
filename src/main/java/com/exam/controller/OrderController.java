@@ -83,9 +83,14 @@ public class OrderController {
 	    if (goodsDTO == null) {
 	        throw new IllegalArgumentException("유효하지 않은 상품 코드입니다: " + gCode);
 	    }
+	    
+	    // 3. 새로운 num 값 생성 (가장 큰 num + 1)
+	    int maxNum = orderService.getMaxNum(); // 현재 cart 테이블의 최대 num 값
+	    int newNum = maxNum + 1;
 
 	    // 3. CartDTO 생성 및 데이터 설정
 	    CartDTO cartDTO = new CartDTO();
+	    cartDTO.setNum(newNum);
 	    cartDTO.setgCode(gCode);         // 상품 코드
 	    cartDTO.setgSize(gSize);         // 선택한 사이즈
 	    cartDTO.setgColor(gColor);       // 선택한 색상

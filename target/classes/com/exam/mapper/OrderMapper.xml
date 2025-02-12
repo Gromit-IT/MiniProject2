@@ -42,6 +42,14 @@
 		WHERE gCode = #{gCode}
 	</select>
 
+	<!-- cart 테이블에서 가장 큰 num 값을 가져오기 -->
+	<select id="getMaxNum" resultType="int">
+    SELECT GREATEST(
+        COALESCE((SELECT MAX(num) FROM orderinfo), 0),
+        COALESCE((SELECT MAX(num) FROM cart), 0)
+    ) AS maxNum
+	</select>
+
 
 
 	<!-- 주문확인창에서 회원정보 가져오기 -->
@@ -66,11 +74,14 @@
 	<!-- 주문 데이터를 orders 테이블에 삽입 -->
 	<insert id="orderComplete" parameterType="OrderDTO">
 		INSERT INTO orderInfo (
-		num, userid, gCode, gSize, gColor, gAmount, orderName, post, addr1, addr2,
+		num, userid, gCode, gSize, gColor, gAmount, orderName, post, addr1,
+		addr2,
 		phone, orderDay
 		) VALUES (
-		#{num}, #{userid}, #{gCode}, #{gSize}, #{gColor}, #{gAmount},
-		#{orderName}, #{post}, #{addr1}, #{addr2}, #{phone}, #{orderDay}
+		#{num}, #{userid}, #{gCode}, #{gSize},
+		#{gColor}, #{gAmount},
+		#{orderName}, #{post}, #{addr1}, #{addr2},
+		#{phone}, #{orderDay}
 		)
 	</insert>
 
@@ -84,9 +95,11 @@
 	<select id="getOrderById" parameterType="string"
 		resultType="OrderDTO">
 		SELECT
-		o.num, o.userid, o.gCode, o.gSize, o.gColor, o.gAmount,o.orderDay, g.gImage,
+		o.num, o.userid, o.gCode, o.gSize, o.gColor,
+		o.gAmount,o.orderDay, g.gImage,
 		g.gPrice
-		FROM orderinfo o join goods g on o.gCode = g.gCode
+		FROM orderinfo o join goods g
+		on o.gCode = g.gCode
 		WHERE userid = #{userid}
 	</select>
 
