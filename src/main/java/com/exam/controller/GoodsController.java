@@ -105,6 +105,12 @@ public class GoodsController {
 
         // 원본 파일명만 저장 (파일 저장 X)
         String fileName = gImage.getOriginalFilename();
+        
+     // 확장자 제거 (파일명에서 마지막 점(.)을 기준으로 확장자 제외)
+        if (fileName != null && fileName.contains(".")) {
+            fileName = fileName.substring(0, fileName.lastIndexOf(".")); 
+        }
+        
         dto.setgImage(fileName);
 
         // DB에 상품 추가
