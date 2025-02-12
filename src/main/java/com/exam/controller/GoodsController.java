@@ -1,5 +1,7 @@
 package com.exam.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -7,13 +9,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.exam.dto.GoodsDTO;
+import com.exam.dto.MemberDTO;
 import com.exam.dto.ReviewDTO;
 import com.exam.service.GoodsService;
+import com.exam.service.MemberService;
 import com.exam.service.ReviewService;
 
 
@@ -74,6 +80,38 @@ public class GoodsController {
 		
 		return mav;
 	}
+	// 상품 등록 페이지 보여주기
+    @GetMapping("/goodsAddForm")
+    public String goodsAddForm() {
+        return "goods/goodsAddForm"; // JSP 페이지 반환
+    }
+
+    // 상품 등록 처리
+    @PostMapping("/goodsAdd")
+    public String goodsAdd(
+            @RequestParam("gCode") String gCode,
+            @RequestParam("gName") String gName,
+            @RequestParam("gCategory") String gCategory,
+            @RequestParam("gPrice") int gPrice,
+            @RequestParam("gContent") String gContent,
+            @RequestParam("gImage") MultipartFile gImage
+    ) {
+        GoodsDTO dto = new GoodsDTO();
+        dto.setgCode(gCode); 
+        dto.setgName(gName);
+        dto.setgCategory(gCategory);
+        dto.setgPrice(gPrice);
+        dto.setgContent(gContent);
+
+        // 원본 파일명만 저장 (파일 저장 X)
+        String fileName = gImage.getOriginalFilename();
+        dto.setgImage(fileName);
+
+        // DB에 상품 추가
+        goodsService.goodsAdd(dto);
+
+        return "redirect:/main"; // 상품 등록 후 메인 페이지로 이동
+    }
 	
 }
 
