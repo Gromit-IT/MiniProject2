@@ -79,7 +79,7 @@
 						<img src="images/up.PNG" id="up"> <img src="images/down.PNG" id="down">
 
 					</h6>
-					<button class="btn btn-primary mt-3" id="buyBtn">구매</button>
+					<button class="btn btn-success mt-3" id="buyBtn">구매</button>
 					<button class="btn btn-primary mt-3" id="cartBtn">장바구니</button>
 				</div>
 			</div>

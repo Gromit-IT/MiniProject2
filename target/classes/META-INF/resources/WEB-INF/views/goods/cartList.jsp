@@ -85,7 +85,7 @@
 
                   </table>
               </div>
-             <div class="btn btn-success m-5" id="deleteAll">전체삭제</div>
+             <div class="btn btn-secondary m-5" id="deleteAll">전체삭제</div>
         </div>
     </div>
   </form>
