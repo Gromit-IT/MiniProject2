@@ -31,4 +31,9 @@ public class ReviewServiceImpl implements ReviewService {
     public double getAverageRating(String gCode) {
         return reviewMapper.getAverageRating(gCode);
     }
+    @Override
+    public boolean deleteReview(int reviewId, String userid) {
+        int deletedRows = reviewMapper.deleteReview(reviewId, userid);
+        return deletedRows > 0;  // ✅ 삭제 성공 여부 반환
+    }
 }

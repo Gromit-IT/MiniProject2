@@ -12,4 +12,5 @@ public interface ReviewMapper {
     List<ReviewDTO> getReviewsByGCode(String gCode);  // 특정 상품 리뷰 조회
     
     double getAverageRating(String gCode);  // 평균 별점 조회
+    int deleteReview(int reviewId, String userid);
 }

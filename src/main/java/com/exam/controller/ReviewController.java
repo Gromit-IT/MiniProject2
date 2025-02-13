@@ -7,7 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exam.dto.MemberDTO;
 import com.exam.dto.ReviewDTO;
@@ -58,5 +62,25 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
         return "forward:/WEB-INF/views/review/reviewList.jsp";  
     }
+    
+    @PostMapping("/delete")
+    public String deleteReview(@RequestParam int reviewId, 
+                               @RequestParam String gCode, 
+                               RedirectAttributes redirectAttributes) {
+        // ✅ 현재 로그인한 사용자 ID 가져오기
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        MemberDTO member = (MemberDTO) auth.getPrincipal();
+        String userid = member.getUserid();  // 🔥 여기서 로그인한 사용자의 ID 가져옴
+
+        // ✅ 삭제 시도
+        boolean isDeleted = reviewService.deleteReview(reviewId, userid);
+
+        if (!isDeleted) {
+            redirectAttributes.addFlashAttribute("errorMessage", "권한이 없습니다.");
+        }
+
+        return "redirect:/goodsRetrieve?gCode=" + gCode;
+    }
+    
 
 }

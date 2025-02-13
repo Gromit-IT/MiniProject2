@@ -95,6 +95,10 @@
 				
 			</div>
 
+			
+
+		</div>
+	</form>
 			<!-- ✅ 리뷰 목록 (작성 폼 아래) -->
 			<div style="width: 100%; margin-top: 20px;">
 				<h3>리뷰 목록</h3>
@@ -102,8 +106,4 @@
 	    			<jsp:param name="gCode" value="${goodsRetrieve.gCode}" />
 				</jsp:include>
 			</div>
-			
-
-		</div>
-	</form>
 </div>

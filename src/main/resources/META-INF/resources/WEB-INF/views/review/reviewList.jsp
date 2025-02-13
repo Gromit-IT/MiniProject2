@@ -12,6 +12,7 @@
                 <th style="padding: 10px;">별점</th>
                 <th style="padding: 10px;">리뷰 내용</th>
                 <th style="padding: 10px;">작성일</th>
+                <th style="padding: 10px;">삭제</th> <!-- 삭제 버튼 추가 -->
             </tr>
             <c:forEach var="review" items="${reviews}">
                 <tr>
@@ -31,6 +32,19 @@
 
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${review.reviewText}</td>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${review.createdAt}</td>
+                    
+                    <!-- 삭제 버튼 -->
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                        <form action="/shop/reviews/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <input type="hidden" name="reviewId" value="${review.id}">
+                        
+                            <button type="submit" style="padding: 5px 10px; background-color: red; color: white; border: none; cursor: pointer;">
+                                삭제
+                            </button>
+                           <input type="hidden" name="gCode" value="${review.gCode}">
+                            
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
