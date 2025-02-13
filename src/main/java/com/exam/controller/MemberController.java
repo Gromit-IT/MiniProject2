@@ -109,7 +109,7 @@ public class MemberController {
 	//회원탈퇴
 	@PostMapping("/withdrawal")
 	public String withdrawal() {
-	    // 현재 로그인한 사용자 정보 가져오기
+	    // 로그인 정보
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    MemberDTO dto = (MemberDTO) auth.getPrincipal(); // 로그인한 사용자 정보 가져오기
 	    String userid = dto.getUserid(); // 로그인한 사용자의 ID
