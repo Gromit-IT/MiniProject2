@@ -55,6 +55,6 @@
 </form>
 <div class="d-flex justify-content-center align-items-center">
     <!-- Cancel Button -->
-    <button type="button" class="btn btn-secondary" onclick="window.location.href='main';">Cancel</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='main';">Back</button>
 </div>
 
