@@ -7,8 +7,9 @@
 > MiniProject2는 ShopMiniMall Project에 Spring Boot, Spring Security, MySQL 등을 활용하고 창의력을 발휘하여 다양한 기능을 추가하는 팀프로젝트 입니다.
 > 최대한 다양한 기능을 추가 하기 위해 BackEnd 위주로 작업한 프로젝트입니다.
 >
+<br>
 
-구현한 기능
+### 구현한 기능
 <li>회원가입</li>
 <li>로그인</li>
 <li>로그아웃</li>
