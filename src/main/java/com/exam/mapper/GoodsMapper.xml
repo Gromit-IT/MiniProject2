@@ -40,22 +40,34 @@
 	<select id="goodsPurchaseList" resultType="GoodsDTO"
 		parameterType="string">
 
-		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
+		SELECT gCode, gCategory, gName, gContent, gPrice,
+		gImage, purchaseCount,
 		regDate
 		FROM goods
 		WHERE gCategory = #{gCategory}
 		ORDER BY purchaseCount DESC;
 	</select>
-	
+
 	<select id="goodsRegDateList" resultType="GoodsDTO"
 		parameterType="string">
 
-		SELECT gCode, gCategory, gName, gContent, gPrice, gImage, purchaseCount,
+		SELECT gCode, gCategory, gName, gContent, gPrice,
+		gImage, purchaseCount,
 		regDate
 		FROM goods
 		WHERE gCategory = #{gCategory}
 		ORDER BY regDate DESC;
 	</select>
+	<insert id="goodsAdd" parameterType="com.exam.dto.GoodsDTO">
+		INSERT INTO goods (gCode, gCategory, gName, gContent, gImage, gPrice,
+		purchaseCount, regDate)
+		VALUES (#{gCode}, #{gCategory}, #{gName}, #{gContent}, #{gImage}, #{gPrice},
+		0, NOW());
+	</insert>
+
+
+
+
 
 
 

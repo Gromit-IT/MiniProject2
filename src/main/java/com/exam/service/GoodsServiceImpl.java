@@ -1,7 +1,6 @@
 package com.exam.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -41,6 +40,13 @@ public class GoodsServiceImpl implements GoodsService{
 	@Override
 	public List<GoodsDTO> goodsRegDateList(String gCategory) {
 		return mapper.goodsRegDateList(gCategory);
+	}
+
+
+	@Override
+	public void goodsAdd(GoodsDTO dto) {
+        mapper.goodsAdd(dto);
+		
 	}
 	
 	

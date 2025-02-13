@@ -38,6 +38,9 @@
                              <li class="nav-item">
                                <a class="nav-link" href="mypage">mypage</a>
                             </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="goodsAddForm">상품등록</a>
+                            </li>
                                 <li class="nav-item">
                                <a class="nav-link" href="cartList">cartList</a>
                             </li>
