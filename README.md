@@ -1,5 +1,6 @@
 # MiniProject2
-" 신세계I&C AI플랫폼을 활용한 (리테일) 서비스 MiniProject2"
+" SHINSEGAE I&C KDT 7기 MiniProject2 "
+" AI플랫폼을 활용한 (리테일) 서비스 "
 
 <br>
 
